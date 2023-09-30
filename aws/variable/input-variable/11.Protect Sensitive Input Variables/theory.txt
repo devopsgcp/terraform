@@ -1,0 +1,41 @@
+# Go to Terraform Console
+terraform console
+
+# Test length function
+Template: length()
+length("hi")
+length("hello")
+length(["a", "b", "c"]) # List
+length({"key" = "value"}) # Map
+length({"key1" = "value1", "key2" = "value2" }) #Map
+
+
+
+
+
+
+# Go to Terraform Console
+terraform console
+
+# Test substr function
+Template: substr(string, offset, length)
+substr("stack simplify", 1, 4)
+substr("stack simplify", 0, 6)
+substr("stack simplify", 0, 1)
+substr("stack simplify", 0, 0)
+substr("stack simplify", 0, 10)
+
+
+
+
+
+
+variable "ec2_ami_id" {
+  description = "AMI ID"
+  type = string  
+  default = "ami-0be2609ba883822ec"
+  validation {
+    condition = length(var.ec2_ami_id) > 4 && substr(var.ec2_ami_id, 0, 4) == "ami-"
+    error_message = "The ec2_ami_id value must be a valid AMI id, starting with \"ami-\"."
+  }
+}
